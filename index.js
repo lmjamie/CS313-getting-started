@@ -62,7 +62,7 @@ function do_math(op, op1, op2) {
   }
 }
 
-const port = 5000;
+const port = 80;
 app.listen(port, function () {
   console.log("We are listening to port " + port +"!");
 });
