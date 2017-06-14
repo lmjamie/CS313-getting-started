@@ -15,12 +15,7 @@ app.get("/math", function get_math (request, response) {
   if ("Error" === result)
     return response.status(400).send("<p>Bad Operation</p>");
 
-  response.render("result.ejs", {
-    "operation": op,
-    "op1": op1,
-    "op2": op2,
-    "result": result
-  });
+  response.render("result.ejs", result);
 });
 
 app.get("/math_service", function get_json(request, response) {
@@ -31,12 +26,7 @@ app.get("/math_service", function get_json(request, response) {
   if ("Error" === result)
     return response.status(400).json({"Error": "Bad Operation"});
 
-  response.json({
-    "operation": op,
-    "op1": op1,
-    "op2": op2,
-    "result": result
-  });
+  response.json(result);
 });
 
 app.all("/", function go_home(req, res) {
@@ -46,23 +36,24 @@ app.all("/", function go_home(req, res) {
 function do_math(op, op1, op2) {
   switch (op) {
     case "Add":
-      return op1 + op2;
+      var result = op1 + op2;
       break;
     case "Subtract":
-      return op1 - op2;
+      var result = op1 - op2;
       break;
     case "Multiply":
-      return op1 * op2;
+      var result = op1 * op2;
       break;
     case "Divide":
-      return op1 / op2;
+      var result = op1 / op2;
       break;
     default:
       return "Error";
   }
+  return {operation: op, op1: op1, op2: op2, result: result};
 }
 
-const port = (process.env.PORT || 5000);
+const port = (process.env.PORT || 5000); //Port for heroku or local port 5000
 app.listen(port, function () {
   console.log("We are listening to port " + port +"!");
 });
