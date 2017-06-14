@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width='device-width', initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Math Form</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="/js/math_ajax.js"></script>
+</head>
+<body>
+  <h1>Math Service Form</h1>
+  <form action="/math" method="GET">
+    <select name="operation" id="operation">
+      <option value="Add">Add</option>
+      <option value="Subtract">Subtract</option>
+      <option value="Multiply">Multiply</option>
+      <option value="Divide">Divide</option>
+    </select>
+    <input type="text" name="operand1" id="op1">
+    <input type="text" name="operand2" id="op2">
+    <button type="submit">Submit</button>
+    <button type="submit" formaction="/math_service">JSON</button>
+    <button type="button" onclick="sleak_math();">AJAX</button>
+  </form>
+  <div id="result-div" hidden="hidden">
+    <h3>Result:</h3>
+    <p id="result"></p>
+  </div>
+</body>
+</html>
